@@ -1,17 +1,17 @@
 <html>
     <body>
     <!-- Task list -->
-    <div>
+    <div id="taskForm">
         <!-- Input -->
-        <section id="taskForm">
+        <section>
             <input type="checkbox">
             <input type="text" v-model="taskText" v-on:keyup.enter="submitTask">
             <button>Clear all tasks</button>
         </section>
         <!-- List -->
-        <section id="taskList">
-            <ol id="list">
-                <ul>temp</ul>
+        <section>
+            <ol>
+                <li v-for="task in tasks">{{ task.text }}</li>
             </ol>    
         </section>
     </div>
