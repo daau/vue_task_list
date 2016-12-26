@@ -1,4 +1,4 @@
-var taskForm = new Vue({
+new Vue({
     el: "#taskForm",
     methods: {
         // Add a new task from the input form
@@ -9,12 +9,21 @@ var taskForm = new Vue({
             });
             // Clear the input form
             this.taskText = "";
-      }  
+        },
+        deleteTask: function(task){
+            var index = this.tasks.indexOf(task);
+            this.tasks.splice(index, 1);
+        },
+        clearTasks: function(){
+            this.tasks = [];
+        }
     },
     data:{
         // Input form text
-        taskText: 'Insert a new task and press "Enter" to submit',
+        taskText: '',
         // Tasks
-        tasks: []
+        tasks: [{
+            text: "hello"
+        }]
     }
 })

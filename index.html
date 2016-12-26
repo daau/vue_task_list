@@ -5,14 +5,22 @@
         <!-- Input -->
         <section>
             <input type="checkbox">
-            <input type="text" v-model="taskText" v-on:keyup.enter="submitTask">
-            <button>Clear all tasks</button>
+            <input type="text" autofocus placeholder="Insert a new task and press Enter to submit" v-model="taskText" v-on:keyup.enter="submitTask">
+            <button v-on:click="clearTasks">Clear all tasks</button>
         </section>
         <!-- List -->
         <section>
             <ol>
-                <li v-for="task in tasks">{{ task.text }}</li>
+                <li v-for="task in tasks">
+                    <input type="checkbox">
+                    <label>{{ task.text }}</label>
+                    <button type="button" v-on:click="deleteTask(task)">X</button>
+                </li>
             </ol>    
+        </section>
+        <!-- Test -->
+        <section>
+            {{ $data }}
         </section>
     </div>
     </body>
