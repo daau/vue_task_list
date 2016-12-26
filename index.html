@@ -11,12 +11,18 @@
         <!-- List -->
         <section>
             <ol>
-                <li v-for="task in tasks">
-                    <input type="checkbox">
+                <li v-for="task in filteredTasks">
+                    <input type="checkbox" v-model="task.completed">
                     <label>{{ task.text }}</label>
                     <button type="button" v-on:click="deleteTask(task)">X</button>
                 </li>
             </ol>    
+        </section>
+        <!-- Filters -->
+        <section>
+            <button v-on:click="setFilter('all')">All</button>
+            <button v-on:click="setFilter('incomplete')">Incomplete</button>
+            <button v-on:click="setFilter('complete')">Complete</button>
         </section>
         <!-- Test -->
         <section>
