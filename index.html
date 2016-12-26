@@ -1,0 +1,21 @@
+<html>
+    <body>
+    <!-- Task list -->
+    <div>
+        <!-- Input -->
+        <section id="taskForm">
+            <input type="checkbox">
+            <input type="text" v-model="taskText" v-on:keyup.enter="submitTask">
+            <button>Clear all tasks</button>
+        </section>
+        <!-- List -->
+        <section id="taskList">
+            <ol id="list">
+                <ul>temp</ul>
+            </ol>    
+        </section>
+    </div>
+    </body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
+</html>
