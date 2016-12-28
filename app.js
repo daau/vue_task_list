@@ -28,6 +28,7 @@ var taskStorage = {
 
 var app = new Vue({
     el: "#taskForm",
+
     methods: {
         // Add a new task from the input form
         submitTask: function(){
@@ -70,6 +71,19 @@ var app = new Vue({
         },
         hasTasks: function(){
             return this.tasks.length > 0;
+        },
+        remaining: function(){
+            return filters.incomplete(this.tasks).length;
+        },
+        checkAll: {
+            get: function(){
+                return this.remaining === 0;
+            },
+            set: function(value){
+                this.tasks.forEach(function(task){
+                    task.completed = value;
+                })
+            }
         }
     },
 

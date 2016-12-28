@@ -11,7 +11,7 @@
         <div id="taskForm">
             <!-- Input -->
             <section class="input">
-                <input type="checkbox">
+                <input type="checkbox" v-model="checkAll">
                 <input type="text" autofocus placeholder="Insert a new task and press Enter to submit" v-model="taskText" v-on:keyup.enter="submitTask" class="text-input">
                 <button v-on:click="clearTasks">Clear</button>
             </section>
