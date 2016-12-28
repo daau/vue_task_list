@@ -1,36 +1,43 @@
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="styles.css">
+    </head>
     <body>
-    <!-- Task list -->
-    <div id="taskForm">
-        <!-- Input -->
-        <section>
-            <input type="checkbox">
-            <input type="text" autofocus placeholder="Insert a new task and press Enter to submit" v-model="taskText" v-on:keyup.enter="submitTask">
-            <button v-on:click="clearTasks">Clear all tasks</button>
-        </section>
-        <!-- List -->
-        <section v-show="hasTasks">
-            <ol>
-                <li v-for="task in filteredTasks">
-                    <input type="checkbox" v-model="task.completed">
-                    <label>{{ task.text }}</label>
-                    <button type="button" v-on:click="deleteTask(task)">X</button>
-                </li>
-            </ol>    
-        </section>
-        <!-- Filters -->
-        <section v-show="hasTasks">
-            <button v-on:click="setFilter('all')">All</button>
-            <button v-on:click="setFilter('incomplete')">Incomplete</button>
-            <button v-on:click="setFilter('complete')">Complete</button>
-        </section>
-        <!-- Debugger -->
-        <section>
-            <p>Debugger</p>
-            {{ $data }}
-        </section>
-    </div>
+        <header>
+            <h1>Task list</h1>
+        </header>
+        <!-- Task list -->
+        <div id="taskForm">
+            <!-- Input -->
+            <section class="input">
+                <input type="checkbox">
+                <input type="text" autofocus placeholder="Insert a new task and press Enter to submit" v-model="taskText" v-on:keyup.enter="submitTask" class="text-input">
+                <button v-on:click="clearTasks">Clear</button>
+            </section>
+            <!-- List -->
+            <section v-show="hasTasks" class="main">
+                <ul>
+                    <li v-for="task in filteredTasks">
+                        <input type="checkbox" v-model="task.completed">
+                        <label>{{ task.text }}</label>
+                        <button type="button" v-on:click="deleteTask(task)">X</button>
+                    </li>
+                </ul>    
+            </section>
+            <!-- Filters -->
+            <footer v-show="hasTasks">
+                <button v-on:click="setFilter('all')">All</button>
+                <button v-on:click="setFilter('incomplete')">Incomplete</button>
+                <button v-on:click="setFilter('complete')">Complete</button>
+            </footer>
+            <!-- Debugger -->
+            <section>
+                <p>Debugger</p>
+                {{ $data }}
+            </section>
+        </div>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="app.js"></script>
     </body>
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <script src="app.js"></script>
 </html>
