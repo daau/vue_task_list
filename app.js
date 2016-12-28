@@ -15,6 +15,17 @@ var filters = {
     }
 }
 
+var taskStorage = {
+    STORAGE_KEY: "task_lister_1.0",
+    loadTasks: function(){
+        var todos = JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '[]');
+        return todos;
+    },
+    saveTasks: function(tasks){
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(tasks))
+    }
+}
+
 var app = new Vue({
     el: "#taskForm",
     methods: {
@@ -48,10 +59,7 @@ var app = new Vue({
         // Input form text
         taskText: '',
         // Tasks
-        tasks: [{
-            text: "hello",
-            completed: true
-        }],
+        tasks: taskStorage.loadTasks(),
         currentFilter: 'all'
     },
 
@@ -62,6 +70,15 @@ var app = new Vue({
         },
         hasTasks: function(){
             return this.tasks.length > 0;
+        }
+    },
+
+    watch: {
+        tasks: {
+            handler: function(tasks){
+                taskStorage.saveTasks(tasks);
+            },
+            deep: true
         }
     }
 })
