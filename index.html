@@ -9,7 +9,7 @@
             <button v-on:click="clearTasks">Clear all tasks</button>
         </section>
         <!-- List -->
-        <section>
+        <section v-show="hasTasks">
             <ol>
                 <li v-for="task in filteredTasks">
                     <input type="checkbox" v-model="task.completed">
@@ -19,13 +19,14 @@
             </ol>    
         </section>
         <!-- Filters -->
-        <section>
+        <section v-show="hasTasks">
             <button v-on:click="setFilter('all')">All</button>
             <button v-on:click="setFilter('incomplete')">Incomplete</button>
             <button v-on:click="setFilter('complete')">Complete</button>
         </section>
-        <!-- Test -->
+        <!-- Debugger -->
         <section>
+            <p>Debugger</p>
             {{ $data }}
         </section>
     </div>

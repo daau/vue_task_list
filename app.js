@@ -15,16 +15,20 @@ var filters = {
     }
 }
 
-new Vue({
+var app = new Vue({
     el: "#taskForm",
     methods: {
         // Add a new task from the input form
         submitTask: function(){
-            // Add a new task
-            this.tasks.push({
-                text: this.taskText,
-                completed: false
-            });
+            var textInput = this.taskText.trim();
+            // Check if the task is empty or not
+            if (textInput){
+                // Add a new task
+                this.tasks.push({
+                    text: textInput,
+                    completed: false
+                });
+            }
             // Clear the input form
             this.taskText = "";
         },
@@ -54,7 +58,10 @@ new Vue({
     // Computed
     computed:{
         filteredTasks: function(){
-            return filters[this.currentFilter](this.tasks)
+            return filters[this.currentFilter](this.tasks);
+        },
+        hasTasks: function(){
+            return this.tasks.length > 0;
         }
     }
 })
